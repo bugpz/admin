@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <layout/>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -84,8 +85,11 @@
 </template>
 
 <script>
+  import layout from "../layouts/layout";
+  import Layout from "../layouts/layout";
 export default {
   name: 'HelloWorld',
+  components: {Layout},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
