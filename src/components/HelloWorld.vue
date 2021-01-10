@@ -85,8 +85,7 @@
 </template>
 
 <script>
-  import layout from "../layouts/layout";
-  import Layout from "../layouts/layout";
+import Layout from '../layouts/layout'
 export default {
   name: 'HelloWorld',
   components: {Layout},

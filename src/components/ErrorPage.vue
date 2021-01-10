@@ -6,11 +6,11 @@
 </template>
 
 <script>
-    import Layout from "../layouts/layout";
-    export default {
-        name: "U_error",
-      components: {Layout}
-    }
+import Layout from '../layouts/layout'
+export default {
+  name: 'U_error',
+  components: {Layout}
+}
 </script>
 
 <style scoped>

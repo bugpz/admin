@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import layout from "../layouts/layout";
-import U_error from "../components/U_error";
+import HelloWorld from '../components/HelloWorld'
+// import layout from '../layouts/layout'
+import ErrorPage from '../components/ErrorPage'
+import Index from '../components/Index'
 
 Vue.use(Router)
 
@@ -12,7 +13,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: layout
+      component: Index
     },
     {
       path: '/h',
@@ -22,7 +23,7 @@ export default new Router({
     {
       path: '*',
       name: 'error',
-      component: U_error
+      component: ErrorPage
     }
   ]
 })
