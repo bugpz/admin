@@ -67,7 +67,6 @@ export default {
   .e_col{
     top: 0;
     width: 201px!important;
-    height: 100vh;
     position: absolute;
     background-color: #758fa9;
   }
