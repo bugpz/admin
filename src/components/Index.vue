@@ -1,18 +1,20 @@
+<!--
+ * @Description: 
+ * @Author: zhu
+ * @Date: 2021-01-14 15:57:46
+ * @LastEditTime: 2021-01-14 16:25:12
+ * @LastEditors: zhu
+-->
 <template>
   <div>
-    <layout/>
-    <img src="static/bg.jpg" width="60%" height="60%" alt="先这样吧">
+    <img src="static/bg.jpg" width="60%" height="60%" alt="先这样吧" />
   </div>
 </template>
 
 <script>
-import Layout from '../layouts/layout'
 export default {
-  name: 'Index',
-  components: {Layout}
-}
+  name: "Index"
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
