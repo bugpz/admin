@@ -1,5 +1,5 @@
 <!--
- * @Description: 
+ * @Description:
  * @Author: zhu
  * @Date: 2021-01-14 15:57:46
  * @LastEditTime: 2021-01-14 16:25:12
@@ -13,8 +13,8 @@
 
 <script>
 export default {
-  name: "Index"
-};
+  name: 'Index'
+}
 </script>
 
 <style scoped></style>

@@ -11,7 +11,7 @@
         text-color="#fff"
         router
       >
-        <el-menu-item index="/">
+        <el-menu-item index="/index">
             <i class="el-icon-house"></i>
             <span>首页</span>
         </el-menu-item>
