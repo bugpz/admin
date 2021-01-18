@@ -1,8 +1,7 @@
 <template>
   <div>
     <Home/>
-    <!--    <HelloWorld/>-->
-    <router-view/>
+    <router-view id="router-view"/>
   </div>
 </template>
 
@@ -15,5 +14,8 @@ export default {
 </script>
 
 <style scoped>
+#router-view {
+  margin-left: 201px!important;
+}
 
 </style>
