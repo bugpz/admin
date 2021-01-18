@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-row :span="12" class="e_col" :style="{width: type === 1 ? '64px!important' : '201px!important'}">
+    <el-row :span="12" class="e_col" :style="{width: type === 1 ? '201px!important' : '64px!important'}">
       <el-col  >
         <el-menu
-          :collapse="type === 1"
+          :collapse="type !== 1 "
           :collapse-transition="false"
           :default-active="$route.path"
           class="el-menu-vertical-demo"
@@ -277,7 +277,7 @@
     </el-row>
     <div style="margin-left: 201px!important;">
       <div>
-        <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-unfold' : 'el-icon-s-fold' " title="0" ></el-button>
+        <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" ></el-button>
       </div>
     </div>
   </div>
@@ -292,7 +292,7 @@ export default {
     }
   },
   methods: {
-    handleChange (type) {
+    handleChange () {
       if (this.type === 1) {
         this.type = 2
       } else {
