@@ -25,7 +25,15 @@ export default new Router({
           path: 'h',
           name: 'hw',
           component: HelloWorld
-        },
+        }
+      ]
+    },
+    {
+      path: '*',
+      name: 'error',
+      component: layout,
+      redirect: '*',
+      children: [
         {
           path: '*',
           name: 'error',
