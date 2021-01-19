@@ -278,6 +278,8 @@
     <div style="margin-left: 201px!important;">
       <div>
         <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" ></el-button>
+        <span style="padding-left: 10px;font-size: 14px">首页</span>
+        <span v-if="$route.path !== '/index' ">/{{$route.name}}</span>
       </div>
     </div>
   </div>
