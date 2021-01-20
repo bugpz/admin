@@ -275,10 +275,10 @@
         </el-menu>
       </el-col>
     </el-row>
-    <div style="margin-left: 201px!important;">
-      <div>
-        <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" ></el-button>
-        <span style="padding-left: 10px;font-size: 14px">首页</span>
+    <div :style="{marginLeft: type === 1 ? '201px!important' : '64px!important'}">
+      <div style="height: 50px">
+        <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" style="margin-top: 5px"></el-button>
+        <span style="padding-left: 10px;font-size: 14px;top: 18px">首页</span>
         <span v-if="$route.path !== '/index' ">/{{$route.name}}</span>
       </div>
     </div>
@@ -299,7 +299,7 @@ export default {
         this.type = 2
       } else {
         this.type = 1
-      }
+      } this.$emit('type-change', this.type)
     },
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
@@ -314,7 +314,7 @@ export default {
 <style scoped>
   .e_col{
     position: absolute;
-    background-color: #758fa9;
+    /*background-color: #758fa9;*/
   }
   .icon {
     width: 18px; height: 18px;
