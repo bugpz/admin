@@ -7,7 +7,7 @@
 -->
 <template>
   <div id="ErrorPage">
-    <h1 style="color: red">此功能暂时没有开发</h1>
+    <iframe src="static/404.html" style="width: 100%;height: 100vh"></iframe>
   </div>
 </template>
 
