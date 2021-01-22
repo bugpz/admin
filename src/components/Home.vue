@@ -276,7 +276,7 @@
       </el-col>
     </el-row>
     <div :style="{marginLeft: type === 1 ? '201px!important' : '64px!important'}" >
-      <div style="height: 50px">
+      <div style="height: 50px" v-if="$route.name!=='error'">
         <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" style="margin-top: 5px" ></el-button>
         <span style="padding-left: 10px;font-size: 14px;top: 18px">首页</span>
         <span v-if="$route.path !== '/index' ">/{{$route.name}}</span>

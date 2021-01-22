@@ -23,7 +23,7 @@ export default new Router({
         },
         {
           path: 'h',
-          name: 'hw',
+          name: '平台优惠券管理',
           component: HelloWorld
         }
       ]
