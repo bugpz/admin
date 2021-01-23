@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
-import layout from '../layouts/layout'
+import layout from '../pages/layouts/Layout'
 import ErrorPage from '../components/ErrorPage'
 import Index from '../components/Index'
+import repertory from './repertory'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    repertory,
     {
       path: '/',
       name: 'index',
@@ -24,7 +26,16 @@ export default new Router({
         {
           path: 'h',
           name: '平台优惠券管理',
-          component: HelloWorld
+          component: HelloWorld,
+          meta: {title: '平台优惠券'},
+          children: [
+            {
+              path: 'www',
+              name: '测试',
+              component: ErrorPage,
+              meta: {title: '第二层'}
+            }
+          ]
         }
       ]
     },

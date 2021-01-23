@@ -29,8 +29,8 @@
             <el-submenu index="1-1">
               <template slot="title">优惠券管理</template>
               <el-menu-item index="/h">平台优惠券管理</el-menu-item>
-              <el-menu-item index="/1-1-1">平台优惠券审核</el-menu-item>
-              <el-menu-item index="/1-1-2">商家优惠券管理</el-menu-item>
+              <el-menu-item index="www">平台优惠券审核</el-menu-item>
+              <el-menu-item index="repertory/repertoryDistribution">商家优惠券管理</el-menu-item>
             </el-submenu>
             <el-submenu index="1-2">
               <template slot="title">购物送券</template>
@@ -279,7 +279,7 @@
       <div style="height: 50px" v-if="$route.name!=='error'">
         <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" style="margin-top: 5px" ></el-button>
         <span style="padding-left: 10px;font-size: 14px;top: 18px">首页</span>
-        <span v-if="$route.path !== '/index' ">/{{$route.name}}</span>
+        <span v-if="$route.path !== '/index' ">/{{$route.meta.title}}</span>
       </div>
     </div>
   </div>

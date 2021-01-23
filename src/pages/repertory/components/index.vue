@@ -1,10 +1,12 @@
 <template>
-
+  <div>
+    <div>kong</div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'repertoryAlter'
+  name: 'index'
 }
 </script>
 
