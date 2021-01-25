@@ -12,6 +12,12 @@ export default new Router({
   routes: [
     repertory,
     {
+      path: '/',
+      name: 'index',
+      component: Layout,
+      redirect: 'index'
+    },
+    {
       path: '*',
       name: 'error',
       component: Layout,
