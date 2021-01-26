@@ -4,6 +4,7 @@ import ErrorPage from '../components/ErrorPage'
 import repertory from './repertory'
 import Layout from '../pages/layouts/Layout'
 import Index from '../components/Index'
+import active from './active'
 
 Vue.use(Router)
 
@@ -11,6 +12,7 @@ export default new Router({
   mode: 'history',
   routes: [
     repertory,
+    active,
     {
       path: '/',
       name: 'index',

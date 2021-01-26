@@ -17,7 +17,19 @@
               </svg>
               <span>首页</span>
           </el-menu-item>
-          <el-submenu index="5" v-for="i in routes" :key="i">
+          <el-submenu :index="i.path" v-for="i in routes" :key="i" v-if="i.meta.layer === 3">
+            <template slot="title" style="text-align: center">
+              <svg class="icon" aria-haspopup="true">
+                <use  :href="i.meta.icon" ></use>
+              </svg>
+              <span>{{ i.meta.title }}</span>
+            </template>
+            <el-submenu  :index="i.path+'/'+x.path" v-for="x in i.children" :key='x'>
+              <template slot="title">{{x.meta.title}}</template>
+              <el-menu-item :index="i.path+'/'+x.path+'/'+there.path" v-for="there in x.children" :key="there">{{there.meta.title}}</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-submenu :index="i.path" v-for="i in routes" :key="i" v-if="i.meta.layer === 2">
             <template slot="title" style="text-align: center">
               <svg class="icon" aria-haspopup="true">
                 <use  :href="i.meta.icon" ></use>
@@ -48,12 +60,13 @@
 
 <script>
 import repertory from '../router/repertory'
+import active from '../router/active'
 export default {
   name: 'Home',
   data () {
     return {
       type: 1,
-      routes: {repertory}
+      routes: {repertory, active}
     }
   },
   methods: {

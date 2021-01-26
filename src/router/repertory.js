@@ -6,7 +6,7 @@ const repertory = {
   component: Layout,
   redirect: '/repertory/index',
   name: 'repertory',
-  meta: {title: '库存查询', icon: '#i-repertory', layer: 1, sort: 1},
+  meta: {title: '库存查询', icon: '#i-repertory', layer: 2, sort: 1},
   auth: 'STOCK_CENTER',
   children: [
     {
