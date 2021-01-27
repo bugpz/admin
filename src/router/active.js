@@ -7,66 +7,66 @@ import verify from '../pages/active/secondsKill/verify/verify'
 import session from '../pages/active/secondsKill/session/session'
 
 const active = {
-  path: '/active',
-  name: 'active',
+  // path: '/active',
+  // name: 'active',
+  // component: Layout,
+  // redirect: '/active/index',
+  // meta: {title: '活动管理', icon: '#i-activity', layer: 3},
+  // children: [
+  //   {
+  path: '/shopping',
+  name: 'shopping',
   component: Layout,
-  redirect: '/active/index',
-  meta: {title: '活动管理', icon: '#i-activity', layer: 3},
+  redirect: '/shopping/index',
+  meta: {title: '拼团活动', path: '/active/shopping', titleUP: '活动管理', icon: '#i-activity', layer: 3},
   children: [
     {
-      path: 'shopping',
-      name: 'shopping',
-      component: Layout,
-      redirect: 'groupBooking',
-      meta: {title: '拼团活动'},
-      children: [
-        {
-          path: 'groupBooking',
-          component: groupBooking,
-          name: 'groupBooking',
-          meta: {title: '拼团活动列表'}
-        },
-        {
-          path: 'groupBookingVerify',
-          component: groupBookingVerify,
-          name: 'groupBookingVerify',
-          meta: {title: '拼团活动审核'}
-        }
-      ]
+      path: 'groupBooking',
+      component: groupBooking,
+      name: 'groupBooking',
+      meta: {title: '拼团活动列表'}
     },
     {
-      path: '/secondsKill',
-      name: 'secondsKill',
-      redirect: 'sessionSet/index',
-      meta: {title: '秒杀活动'},
-      children: [
-        {
-          path: '/sessionSet',
-          component: sessionSet,
-          name: 'sessionSet',
-          meta: {title: '秒杀场次设置'}
-        },
-        {
-          path: 'newActive',
-          component: newActive,
-          name: 'newActive',
-          meta: {title: '新增秒杀活动'}
-        },
-        {
-          path: 'verify',
-          component: verify,
-          name: 'verify',
-          meta: {title: '秒杀活动审核'}
-        },
-        {
-          path: 'session',
-          component: session,
-          name: 'session',
-          meta: {title: '秒杀活动管理'}
-        }
-      ]
+      path: 'groupBookingVerify',
+      component: groupBookingVerify,
+      name: 'groupBookingVerify',
+      meta: {title: '拼团活动审核'}
     }
   ]
 }
+//     {
+//       path: '/secondsKill',
+//       name: 'secondsKill',
+//       redirect: 'sessionSet/index',
+//       meta: {title: '秒杀活动'},
+//       children: [
+//         {
+//           path: '/sessionSet',
+//           component: sessionSet,
+//           name: 'sessionSet',
+//           meta: {title: '秒杀场次设置'}
+//         },
+//         {
+//           path: 'newActive',
+//           component: newActive,
+//           name: 'newActive',
+//           meta: {title: '新增秒杀活动'}
+//         },
+//         {
+//           path: 'verify',
+//           component: verify,
+//           name: 'verify',
+//           meta: {title: '秒杀活动审核'}
+//         },
+//         {
+//           path: 'session',
+//           component: session,
+//           name: 'session',
+//           meta: {title: '秒杀活动管理'}
+//         }
+//       ]
+//     }
+//   ]
+// }
 
 export default active

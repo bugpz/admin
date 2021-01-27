@@ -22,11 +22,11 @@
               <svg class="icon" aria-haspopup="true">
                 <use  :href="i.meta.icon" ></use>
               </svg>
-              <span>{{ i.meta.title }}</span>
+              <span>{{ i.meta.titleUP }}</span>
             </template>
-            <el-submenu  :index="i.path+'/'+x.path" v-for="x in i.children" :key='x'>
-              <template slot="title">{{x.meta.title}}</template>
-              <el-menu-item :index="i.path+'/'+x.path+'/'+there.path" v-for="there in x.children" :key="there">{{there.meta.title}}</el-menu-item>
+            <el-submenu  :index="i.meta.path">
+              <template slot="title">{{i.meta.title}}</template>
+              <el-menu-item :index="i.meta.path+'/'+x.path" v-for="x in i.children" :key="x">{{x.meta.title}}</el-menu-item>
             </el-submenu>
           </el-submenu>
           <el-submenu :index="i.path" v-for="i in routes" :key="i" v-if="i.meta.layer === 2">

@@ -11,25 +11,17 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    repertory,
-    active,
     {
       path: '/',
       name: 'index',
       component: Layout,
-      redirect: 'index'
-    },
-    {
-      path: '*',
-      name: 'error',
-      component: Layout,
-      redirect: '*',
-      children: [
+      redirect: 'index',
+      children: [repertory,
+        active,
         {
           path: 'index',
-          name: 'index',
-          component: Index,
-          meta: {title: '首页'}
+          name: 'home',
+          component: Index
         },
         {
           path: '*',
@@ -38,5 +30,24 @@ export default new Router({
         }
       ]
     }
+  //   {
+  //     path: '*',
+  //     name: 'error',
+  //     component: Layout,
+  //     redirect: '*',
+  //     children: [
+  //       {
+  //         path: 'index',
+  //         name: 'index',
+  //         component: Index,
+  //         meta: {title: '首页'}
+  //       },
+  //       {
+  //         path: '*',
+  //         name: 'error',
+  //         component: ErrorPage
+  //       }
+  //     ]
+  //   }
   ]
 })
