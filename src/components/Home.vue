@@ -22,11 +22,11 @@
               <svg class="icon" aria-haspopup="true">
                 <use  :href="i.meta.icon" ></use>
               </svg>
-              <span>{{ i.meta.titleUP }}</span>
+              <span>{{ i.meta.title }}</span>
             </template>
-            <el-submenu  :index="i.meta.path">
-              <template slot="title">{{i.meta.title}}</template>
-              <el-menu-item :index="i.meta.path+'/'+x.path" v-for="x in i.children" :key="x">{{x.meta.title}}</el-menu-item>
+            <el-submenu  :index="i.path+'/'+x.path" v-for="x in i.children" :key='x'>
+              <template slot="title">{{x.meta.title}}</template>
+              <el-menu-item :index="i.path+'/'+x.path+'/'+there.path" v-for="there in x.children" :key="there">{{there.meta.title}}</el-menu-item>
             </el-submenu>
           </el-submenu>
           <el-submenu :index="i.path" v-for="i in routes" :key="i" v-if="i.meta.layer === 2">
@@ -42,10 +42,11 @@
       </el-col>
     </el-row>
     <div :style="{marginLeft: type === 1 ? '201px!important' : '64px!important'}" >
-      <div style="height: 50px" v-if="$route.name!=='error'" v-for="i in routes" :key='i'>
+      <div style="height: 50px" v-if="$route.name!=='error'">
         <el-button @click="handleChange(type)" :icon="type === 1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' " title="0" style="margin-top: 5px" ></el-button>
         <span style="padding-left: 10px;font-size: 14px;top: 18px">首页</span>
-        <span v-if="$route.path !== '/index' ">/{{i.meta.title}}/{{$route.meta.title}}</span>
+        <span v-if="$route.path !== '/index' && lay === 2">/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
+        <span v-else-if="$route.path !== '/index' && lay === 3">/{{$route.matched[lay-2].meta.title}}/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
       </div>
       <div style="height: 44px">
         <el-tag
@@ -66,13 +67,15 @@ export default {
   data () {
     return {
       type: 1,
-      routes: {repertory, active}
+      routes: {repertory, active},
+      lay: this.$route.matched[1].meta.layer
     }
   },
   methods: {
     handleChange () {
       if (this.type === 1) {
         this.type = 2
+        console.log(this.lay, this.$route)
       } else {
         this.type = 1
       } this.$emit('type-change', this.type)
