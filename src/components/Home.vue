@@ -3,6 +3,7 @@
     <el-row :span="12" class="e_col he" :style="{width: type === 1 ? '201px!important' : '64px!important'}">
       <el-col  class="he">
         <el-menu
+          :unique-opened="true"
           :collapse="type !== 1 "
           :collapse-transition="false"
           :default-active="$route.path"
@@ -62,13 +63,19 @@
 <script>
 import repertory from '../router/repertory'
 import active from '../router/active'
+import advertising from '../router/advertising'
+import goods from '../router/goods'
 export default {
   name: 'Home',
   data () {
     return {
       type: 1,
-      routes: {repertory, active},
-      lay: this.$route.matched[1].meta.layer
+      routes: {repertory, active, advertising, goods}
+    }
+  },
+  computed: {
+    lay () {
+      return this.$route.matched[1].meta.layer
     }
   },
   methods: {

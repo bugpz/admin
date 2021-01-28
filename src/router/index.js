@@ -5,6 +5,8 @@ import repertory from './repertory'
 import Layout from '../pages/layouts/Layout'
 import active from './active'
 import Index from '../components/Index'
+import advertising from './advertising'
+import goods from './goods'
 
 Vue.use(Router)
 
@@ -17,15 +19,21 @@ export default new Router({
       component: Layout,
       redirect: 'index',
       children: [
-        active, repertory,
+        active, repertory, advertising, goods,
         {
           path: 'index',
           name: 'index',
           component: Index
-        },
+        }
+      ]
+    },
+    {
+      path: '*',
+      component: Layout,
+      redirect: '/error',
+      children: [
         {
-          path: '*',
-          name: 'error',
+          path: '/error',
           component: ErrorPage
         }
       ]
