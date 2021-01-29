@@ -16,29 +16,16 @@
         <el-button type="success" size="small" native-type="reset">清空</el-button>
       </el-form-item>
     </el-form>
-    <div v-for="sate in info" :key="sate">
-      <p>{{info}}</p>
-    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'index',
   data () {
     return {
-      input: '',
-      info: null
+      input: ''
     }
-  },
-  mounted () {
-    axios
-      .get('https://qqlykm.cn/api/douyin/hot.php', {param: {withCredentials: false}})
-      .then(response => (this.info = response.data.json))
-      .catch(function (error) {
-        console.log(error)
-      })
   }
 }
 </script>

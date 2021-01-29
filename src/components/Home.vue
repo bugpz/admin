@@ -18,26 +18,26 @@
               </svg>
               <span>首页</span>
           </el-menu-item>
-          <el-submenu :index="i.path" v-for="i in routes" :key="i" v-if="i.meta.layer === 3">
+          <el-submenu :index="idea.path" v-for="(idea, index) in routes" :key=index v-if="idea.meta.layer === 3">
             <template slot="title" style="text-align: center">
               <svg class="icon" aria-haspopup="true">
-                <use  :href="i.meta.icon" ></use>
+                <use  :href="idea.meta.icon" ></use>
               </svg>
-              <span>{{ i.meta.title }}</span>
+              <span>{{ idea.meta.title }}</span>
             </template>
-            <el-submenu  :index="i.path+'/'+x.path" v-for="x in i.children" :key='x'>
+            <el-submenu  :index="idea.path+'/'+x.path" v-for="(x, index) in idea.children" :key=index>
               <template slot="title">{{x.meta.title}}</template>
-              <el-menu-item :index="i.path+'/'+x.path+'/'+there.path" v-for="there in x.children" :key="there">{{there.meta.title}}</el-menu-item>
+              <el-menu-item :index="idea.path+'/'+x.path+'/'+there.path" v-for="(there, index) in x.children" :key=index>{{there.meta.title}}</el-menu-item>
             </el-submenu>
           </el-submenu>
-          <el-submenu :index="i.path" v-for="i in routes" :key="i" v-if="i.meta.layer === 2">
+          <el-submenu :index="idx.path" v-for="(idx, index) in routes" :key=index v-if="idx.meta.layer === 2">
             <template slot="title" style="text-align: center">
               <svg class="icon" aria-haspopup="true">
-                <use  :href="i.meta.icon" ></use>
+                <use  :href="idx.meta.icon" ></use>
               </svg>
-              <span>{{ i.meta.title }}</span>
+              <span>{{ idx.meta.title }}</span>
             </template>
-            <el-menu-item :index="i.path+'/'+x.path" v-for="x in i.children" :key='x'>{{x.meta.title}}</el-menu-item>
+            <el-menu-item :index="idx.path+'/'+xd.path" v-for="(xd, index) in idx.children" :key=index>{{xd.meta.title}}</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>
@@ -50,11 +50,13 @@
         <span v-else-if="$route.path !== '/index' && lay === 3">/{{$route.matched[lay-2].meta.title}}/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
       </div>
       <div style="height: 44px">
-        <el-tag
-          closable
+        <el-tabs
+        :closable="true"
+        type="card"
         >
-          {{this.$route.meta.title}}
-        </el-tag>
+          <el-tab-pane :label="$route.meta.title">
+          </el-tab-pane>
+        </el-tabs>
       </div>
     </div>
   </div>
@@ -65,12 +67,13 @@ import repertory from '../router/repertory'
 import active from '../router/active'
 import advertising from '../router/advertising'
 import goods from '../router/goods'
+import market from '../router/market'
 export default {
   name: 'Home',
   data () {
     return {
       type: 1,
-      routes: {repertory, active, advertising, goods}
+      routes: {repertory, active, advertising, goods, market}
     }
   },
   computed: {

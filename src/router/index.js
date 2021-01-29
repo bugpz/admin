@@ -7,6 +7,7 @@ import active from './active'
 import Index from '../components/Index'
 import advertising from './advertising'
 import goods from './goods'
+import market from './market'
 
 Vue.use(Router)
 
@@ -19,10 +20,10 @@ export default new Router({
       component: Layout,
       redirect: 'index',
       children: [
-        active, repertory, advertising, goods,
+        active, repertory, advertising, goods, market,
         {
           path: 'index',
-          name: 'index',
+          name: 'home',
           component: Index
         }
       ]
