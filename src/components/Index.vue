@@ -6,14 +6,41 @@
  * @LastEditors: zhu
 -->
 <template>
-  <div>
-    <img src="static/bg.jpg" width="60%" height="60%" alt="先这样吧" />
+  <div style="text-align: center">
+    <div>
+      <h1>知乎最新的新闻列表</h1>
+      <h4>{{this.articles.display_date}}</h4>
+    </div>
+    <div v-for="(i, index) in this.articles.news" :key="index">
+      <a :href=i.share_url target="_blank">{{i.title}}</a>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'Index'
+  name: 'Index',
+  data () {
+    return {
+      articles: ''
+    }
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      const url = '/api/lanzou/api.php'
+      axios
+        .get(url)
+        .then(res => {
+          this.articles = JSON.parse(res.data.substring(0, res.data.length - 4))
+          console.log(res)
+          console.log(this.articles, typeof (this.articles))
+        })
+    }
+  }
 }
 </script>
 

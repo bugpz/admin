@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {//关闭跨域需注释{}内容
+      '/api': {
+        target: 'https://www.qqlykm.cn',//后端接口地址
+        changeOrigin: true,//是否允许跨越,
+        pathRewrite: {
+          '^/api' : '/api'
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
