@@ -1,9 +1,9 @@
 <!--
  * @Description:
- * @Author: bugpz
+ * @Author: BugP
  * @Date: 2021-01-30 21:54
  * @LastEditTime: 2021-01-30 21:54
- * @LastEditors: bugpz
+ * @LastEditors: BugP
 -->
 <template>
   <div>首页配置</div>

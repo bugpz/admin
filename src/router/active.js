@@ -4,20 +4,19 @@ import groupBookingVerify from '../pages/active/shopping/group_booking_verify/gr
 import sessionSet from '../pages/active/secondsKill/session_set/sessionSet'
 import verify from '../pages/active/secondsKill/verify/verify'
 import session from '../pages/active/secondsKill/session/session'
-import Active from '../pages/active/index'
-import Shopping from '../pages/active/shopping/index'
+import Default from '../pages/Default/Default'
 
 const active = {
   path: '/active',
   name: 'active',
-  component: Active,
+  component: Default,
   redirect: '/active/index',
   meta: {title: '活动管理', icon: '#i-activity', layer: 3},
   children: [
     {
       path: 'shopping',
       name: 'shopping',
-      component: Shopping,
+      component: Default,
       redirect: 'groupBooking',
       meta: {title: '拼团活动'},
       children: [

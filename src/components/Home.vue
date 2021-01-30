@@ -68,12 +68,13 @@ import active from '../router/active'
 import advertising from '../router/advertising'
 import goods from '../router/goods'
 import market from '../router/market'
+import cms from '../router/cms'
 export default {
   name: 'Home',
   data () {
     return {
       type: 1,
-      routes: {repertory, active, advertising, goods, market}
+      routes: {repertory, active, advertising, goods, market, cms}
     }
   },
   computed: {

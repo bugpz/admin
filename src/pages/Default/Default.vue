@@ -1,9 +1,9 @@
 <!--
  * @Description:
- * @Author: bugpz
+ * @Author: BugP
  * @Date: 2021-01-30 22:09
  * @LastEditTime: 2021-01-30 22:09
- * @LastEditors: bugpz
+ * @LastEditors: BugP
 -->
 <template>
   <div>

@@ -8,7 +8,7 @@
 <template>
   <div style="text-align: center">
     <div>
-      <h1>知乎最新的新闻列表</h1>
+      <h1>知乎日报</h1>
       <h4>{{this.articles.display_date}}</h4>
     </div>
     <div v-for="(i, index) in this.articles.news" :key="index">

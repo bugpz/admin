@@ -1,10 +1,10 @@
-import Advertising from '../pages/advertising/index'
 import SpaceList from '../pages/advertising/spaceList/spaceList'
+import Default from '../pages/Default/Default'
 
 const advertising = {
   path: '/advertising',
   redirect: 'spaceList',
-  component: Advertising,
+  component: Default,
   meta: {title: '广告管理', icon: '#i-ad', layer: 2},
   children: [
     {

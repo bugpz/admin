@@ -1,10 +1,10 @@
 import repertoryDistribution from '../pages/repertory/repertory-distribution/repertoryDistribution'
 import repertoryAlter from '../pages/repertory/repertoryAlter/repertoryAlter'
-import Repertory from '../pages/repertory/Repertory'
+import Default from '../pages/Default/Default'
 
 const repertory = {
   path: '/repertory',
-  component: Repertory,
+  component: Default,
   redirect: '/repertory/index',
   name: 'repertory',
   meta: {title: '库存查询', icon: '#i-repertory', layer: 2, sort: 1},

@@ -1,4 +1,3 @@
-import index from '../pages/market/index'
 import BusinessCoupon from '../pages/market/couponManager/businessCoupon/BusinessCoupon'
 import CIndex from '../pages/market/couponManager/index/CIndex'
 import CVerify from '../pages/market/couponManager/verify/CVerify'
@@ -9,17 +8,18 @@ import newPeople from '../pages/market/scene/newPeople/newPeople'
 import SVerify from '../pages/market/shopping/SVerify/SVerify'
 import SIndex from '../pages/market/shopping/SIndex/SIndex'
 import MVerify from '../pages/market/manMade/MVerify/MVerify'
+import Default from '../pages/Default/Default'
 
 const market = {
   path: '/market',
   meta: {title: '营销管理', icon: '#i-marketing', layer: 3},
-  component: index,
+  component: Default,
   redirect: '/market/index',
   children: [
     {
       path: 'couponManager',
       meta: {title: '优惠券管理'},
-      component: index,
+      component: Default,
       children: [
         {
           path: 'businessCoupon',
@@ -41,7 +41,7 @@ const market = {
     {
       path: 'manMade',
       meta: {title: '人工发券'},
-      component: index,
+      component: Default,
       children: [
         {
           path: 'index',
@@ -57,7 +57,7 @@ const market = {
     },
     {
       path: 'scene',
-      component: index,
+      component: Default,
       meta: {title: '营销场景'},
       children: [
         {
@@ -79,7 +79,7 @@ const market = {
     },
     {
       path: 'shopping',
-      component: index,
+      component: Default,
       meta: {title: '购物送券'},
       children: [
         {
