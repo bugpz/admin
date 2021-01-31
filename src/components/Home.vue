@@ -49,32 +49,29 @@
         <span v-if="$route.path !== '/index' && lay === 2">/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
         <span v-else-if="$route.path !== '/index' && lay === 3">/{{$route.matched[lay-2].meta.title}}/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
       </div>
-      <div style="height: 44px">
-        <el-tabs
-        :closable="true"
-        type="card"
-        >
-          <el-tab-pane :label="$route.meta.title">
-          </el-tab-pane>
-        </el-tabs>
-      </div>
+      <HTabs/>
     </div>
   </div>
 </template>
 
 <script>
+import HTabs from '../pages/layouts/HTabs'
 import repertory from '../router/repertory'
 import active from '../router/active'
 import advertising from '../router/advertising'
 import goods from '../router/goods'
 import market from '../router/market'
 import cms from '../router/cms'
+import order from '../router/order'
+import afterSale from '../router/afterSale'
+import leader from '../router/leader'
 export default {
   name: 'Home',
+  components: {HTabs},
   data () {
     return {
       type: 1,
-      routes: {repertory, active, advertising, goods, market, cms}
+      routes: {repertory, active, advertising, goods, market, cms, order, afterSale, leader}
     }
   },
   computed: {

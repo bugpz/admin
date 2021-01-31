@@ -9,6 +9,9 @@ import advertising from './advertising'
 import goods from './goods'
 import market from './market'
 import cms from './cms'
+import order from './order'
+import afterSale from './afterSale'
+import leader from './leader'
 
 Vue.use(Router)
 
@@ -21,7 +24,7 @@ export default new Router({
       component: Layout,
       redirect: 'index',
       children: [
-        active, repertory, advertising, goods, market, cms,
+        active, repertory, advertising, goods, market, cms, order, afterSale, leader,
         {
           path: 'index',
           name: 'home',

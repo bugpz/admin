@@ -13,7 +13,7 @@ const cms = {
   path: 'cms',
   components: Default,
   name: 'cms',
-  meta: {title: 'CMS装修', layer: 2},
+  meta: {title: 'CMS装修', icon: '#i-cms', layer: 2},
   redirect: 'index',
   children: [
     {
