@@ -5,6 +5,12 @@
 ## Build Setup
 
 ``` bash
+#Server deployment
+服务器使用Nginx部署，nginx.conf在config目录中 监听端口需修改为自己想部署的端口
+if 需要跨域请求 nginx.conf需添加代理  可参考108-111行
+注：如代理https，nginx需添加SSL模块  参照https://www.jianshu.com/p/3191f6d52a53
+
+
 # install dependencies
 npm install
 

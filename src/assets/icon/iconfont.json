@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15984203",
+      "name": "商品目录",
+      "font_class": "merchantGoods",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
       "icon_id": "1685711",
       "name": "其他",
       "font_class": "other",

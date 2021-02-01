@@ -12,6 +12,9 @@ import cms from './cms'
 import order from './order'
 import afterSale from './afterSale'
 import leader from './leader'
+import seller from './seller'
+import merchantGoods from './merchantGoods'
+import cookBook from './cookBook'
 
 Vue.use(Router)
 
@@ -24,7 +27,7 @@ export default new Router({
       component: Layout,
       redirect: 'index',
       children: [
-        active, repertory, advertising, goods, market, cms, order, afterSale, leader,
+        active, repertory, advertising, goods, market, cms, order, afterSale, leader, seller, merchantGoods, cookBook,
         {
           path: 'index',
           name: 'home',
