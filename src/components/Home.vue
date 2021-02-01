@@ -68,13 +68,27 @@ import leader from '../router/leader'
 import seller from '../router/seller'
 import merchantGoods from '../router/merchantGoods'
 import cookBook from '../router/cookBook'
+import financial from '../router/financial'
 export default {
   name: 'Home',
   components: {HTabs},
   data () {
     return {
       type: 1,
-      routes: {repertory, active, advertising, goods, market, cms, order, afterSale, leader, seller, merchantGoods, cookBook}
+      routes: {repertory,
+        active,
+        advertising,
+        goods,
+        market,
+        cms,
+        order,
+        afterSale,
+        leader,
+        seller,
+        merchantGoods,
+        cookBook,
+        financial
+      }
     }
   },
   computed: {

@@ -15,6 +15,7 @@ import leader from './leader'
 import seller from './seller'
 import merchantGoods from './merchantGoods'
 import cookBook from './cookBook'
+import financial from './financial'
 
 Vue.use(Router)
 
@@ -27,7 +28,9 @@ export default new Router({
       component: Layout,
       redirect: 'index',
       children: [
-        active, repertory, advertising, goods, market, cms, order, afterSale, leader, seller, merchantGoods, cookBook,
+        active, repertory, advertising, goods, market,
+        cms, order, afterSale, leader, seller,
+        merchantGoods, cookBook, financial,
         {
           path: 'index',
           name: 'home',
