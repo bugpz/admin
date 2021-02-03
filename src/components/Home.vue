@@ -49,7 +49,7 @@
         <span style="padding-left: 10px;font-size: 14px;top: 18px">首页</span>
         <span v-if="$route.path !== '/index' && lay === 2">/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
         <span v-else-if="$route.path !== '/index' && lay === 3 && $route.meta.layer !==2">/{{$route.matched[lay-2].meta.title}}/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
-        <span v-else>/{{$route.matched[lay-2].meta.title}}/{{$route.meta.title}}</span>
+        <span v-else-if="$route.meta.layer === 2">/{{$route.matched[lay-2].meta.title}}/{{$route.meta.title}}</span>
       </div>
       <HTabs/>
     </div>
