@@ -36,8 +36,9 @@ export default {
         .get(url)
         .then(res => {
           this.articles = JSON.parse(res.data.substring(0, res.data.length - 4))
-          console.log(res)
-          console.log(this.articles, typeof (this.articles))
+          // console.log(res)
+          // console.log(this.articles, typeof (this.articles))
+          console.log('%cTime, shade fitting for; The heart, with distances', 'color:HotPink; font-size:25px')
         })
     }
   }
