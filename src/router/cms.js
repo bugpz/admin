@@ -5,16 +5,16 @@
  * @LastEditTime: 2021-01-31 00:11
  * @LastEditors: BugP
 */
-import Default from '../pages/Default/Default'
 import specialCMS from '../pages/cms/special/specialCMS'
 import CMSIndex from '../pages/cms/index/CMSIndex'
+import Default from '../pages/Default/Default'
 
 const cms = {
-  path: 'cms',
-  components: Default,
+  path: '/cms',
+  component: Default,
   name: 'cms',
   meta: {title: 'CMS装修', icon: '#i-cms', layer: 2},
-  redirect: 'index',
+  redirect: '/cms/index',
   children: [
     {
       path: 'special',

@@ -18,27 +18,25 @@
               </svg>
               <span>首页</span>
           </el-menu-item>
-          <el-submenu :index="idea.path" v-for="(idea, index) in routes" :key=index v-if="idea.meta.layer === 3">
-            <template slot="title" style="text-align: center">
+          <el-submenu :index="idea.path" v-for="(idea, index) in routes" :key=index>
+            <template slot="title" style="text-align: center" v-if="idea.meta.layer === 3">
               <svg class="icon" aria-haspopup="true">
                 <use  :href="idea.meta.icon" ></use>
               </svg>
               <span>{{ idea.meta.title }}</span>
             </template>
-            <el-submenu v-if="x.children" :index="idea.path+'/'+x.path" v-for="(x, index) in idea.children" :key=index>
+            <el-submenu v-if="x.children && idea.meta.layer === 3 " :index="idea.path+'/'+x.path" v-for="(x, index) in idea.children" :key=index>
               <template slot="title">{{x.meta.title}}</template>
               <el-menu-item :index="idea.path+'/'+x.path+'/'+there.path" v-for="(there, index) in x.children" :key=index>{{there.meta.title}}</el-menu-item>
             </el-submenu>
-            <el-menu-item v-else-if="!x.children" :index="idea.path+ '/' + x.path">{{x.meta.title}}</el-menu-item>
-          </el-submenu>
-          <el-submenu :index="idx.path" v-for="(idx, index) in routes" :key=index v-if="idx.meta.layer === 2">
-            <template slot="title" style="text-align: center">
+            <el-menu-item v-else-if="!x.children && idea.meta.layer === 3 " :index="idea.path+ '/' + x.path">{{x.meta.title}}</el-menu-item>
+            <template slot="title" style="text-align: center" v-if="idea.meta.layer === 2">
               <svg class="icon" aria-haspopup="true">
-                <use  :href="idx.meta.icon" ></use>
+                <use  :href="idea.meta.icon" ></use>
               </svg>
-              <span>{{ idx.meta.title }}</span>
+              <span>{{ idea.meta.title }}</span>
             </template>
-            <el-menu-item :index="idx.path+'/'+xd.path" v-for="(xd, index) in idx.children" :key=index>{{xd.meta.title}}</el-menu-item>
+            <el-menu-item v-if="idea.meta.layer === 2" :index="idea.path+'/'+xd.path" v-for="(xd, index) in idea.children" :key=index>{{xd.meta.title}}</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>

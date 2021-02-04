@@ -37,9 +37,8 @@
     </div>
     <div class="form">
       <el-table
-        :data="tableData"
         border
-        style="width: 100%">
+        style="width: 100%"> <!--:data="tableData"-->
         <el-table-column
           prop="date"
           label="规格"
