@@ -72,18 +72,21 @@ import financial from '../router/financial'
 import message from '../router/message'
 import logistics from '../router/logistics'
 import setting from '../router/setting'
+import user from '../router/user'
+import other from '../router/other'
 export default {
   name: 'Home',
   components: {HTabs},
   data () {
     return {
       type: 1,
-      routes: {repertory,
-        active,
-        advertising,
+      routes: {
         goods,
         market,
+        active,
+        advertising,
         cms,
+        repertory,
         order,
         afterSale,
         leader,
@@ -91,9 +94,11 @@ export default {
         merchantGoods,
         cookBook,
         financial,
+        user,
         message,
         logistics,
-        setting
+        setting,
+        other
       }
     }
   },

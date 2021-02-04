@@ -19,6 +19,7 @@ import financial from './financial'
 import message from './message'
 import logistics from './logistics'
 import setting from './setting'
+import other from './other'
 
 Vue.use(Router)
 
@@ -33,7 +34,7 @@ export default new Router({
       children: [
         active, repertory, advertising, goods, market,
         cms, order, afterSale, leader, seller,
-        merchantGoods, cookBook, financial, message, logistics, setting,
+        merchantGoods, cookBook, financial, message, logistics, setting, other,
         {
           path: 'index',
           name: 'home',
