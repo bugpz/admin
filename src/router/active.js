@@ -38,6 +38,7 @@ const active = {
       path: 'secondsKill',
       name: 'secondsKill',
       redirect: 'sessionSet/index',
+      component: Default,
       meta: {title: '秒杀活动'},
       children: [
         {

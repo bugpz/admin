@@ -118,14 +118,5 @@ export default {
 </script>
 
 <style scoped>
-.right_btn{
-  float: right;
-  margin-right: 20px;
-}
-.form{
-  width: 98%;
-  height: 12vh;
-  box-shadow: 0 2px 4px rgb(0, 0, 0), 0 0 6px rgba(0, 0, 0, .04);
-  margin: 1%;
-}
+
 </style>
