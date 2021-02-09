@@ -1,16 +1,20 @@
 <template>
   <div>
-    <div class="form">
-      <el-form>
+    <div class="form" style="height: 19vh">
+      <el-form
+        inline="inline"
+      >
         <el-row>
           <el-col
-            :span=8
+            :span=6
+            :offset=1
           >
             <el-form-item
               label="投放终端"
             >
               <el-select
                 v-model="inputTerminal"
+                placeholder="全部"
               >
                 <el-option
                   v-for="(option, index) in optionTerminal"
@@ -21,8 +25,88 @@
               </el-select>
             </el-form-item>
           </el-col>
+          <el-col
+            :span=6
+            :offset=1
+          >
+            <el-form-item
+              label="投放业务"
+            >
+              <el-select
+                v-model="inputBusiness"
+                placeholder="全部"
+              >
+                <el-option
+                  v-for="(option, index) in optionBusiness"
+                  :key="index"
+                  :value="option.value"
+                  :label="option.label"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col
+            :span=6
+            :offset=1
+          >
+            <el-form-item
+              label="投放状态"
+            >
+              <el-select
+                v-model="inputStatus"
+                placeholder="全部"
+              >
+                <el-option
+                  v-for="(option, index) in optionStatus"
+                  :key="index"
+                  :value="option.value"
+                  :label="option.label"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col
+            :span=15
+            :offset=1
+          >
+            <el-form-item
+              label="商品编码"
+            >
+              <el-input
+                class="inputWidth"
+                v-model="inputCode"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col
+            class="right_btn"
+            :span=1
+            v-for="(btn, index) in buttons"
+            :key="index"
+            >
+            <el-button
+              :class="btn.class"
+              :type="btn.type"
+              :native-type="btn.nType"
+            >
+              {{btn.title}}
+            </el-button>
+          </el-col>
         </el-row>
       </el-form>
+    </div>
+    <div>
+      <el-table>
+        <el-table-column
+          v-for="(data, index) in dataList"
+          :key="index"
+          :label="data.label"
+        ></el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
