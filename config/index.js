@@ -11,13 +11,20 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {//关闭跨域需注释{}内容
+      '/api/web' : {
+        target: 'https://webapi.meiweigx.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/web' : '/api/web'
+        }
+      },
       '/api': {
         target: 'https://www.qqlykm.cn',//后端接口地址
-        changeOrigin: true,//是否允许跨越,
+        changeOrigin: true,//是否允许跨域,
         pathRewrite: {
           '^/api' : '/api'
         }
-      }
+      },
     },
 
     // Various Dev Server settings

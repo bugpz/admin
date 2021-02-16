@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'group_booking',
   data () {
@@ -111,7 +112,25 @@ export default {
         {label: '状态'},
         {label: '驳货原因'},
         {label: '操作'}
-      ]
+      ],
+      tableDates: []
+    }
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      const url = '/api/web/commodity/groupActivity/query'
+      axios
+        .post(url, {'searchs': '[]', 'pageNo': 1, 'pageSize': 20, 'orderby': 'createTime', 'sort': 'desc'}, {headers: {
+          authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxOCIsInN1YiI6IjEzNTU4NjIyNzc5IiwiaWF0IjoxNjEzNDc4MjEwLCJyb2xlcyI6WyI3NzYxOTcxNjQyMDMyNDU1NjgiXSwiYXV0aG9yaXRpZXMiOjE5NTc5MTg5Nzd9.2NMga8-_Gfia0SnnS2j4n88F3n6yuSdwywiSXvW1d5I'}})
+        .then(res => {
+          this.tableDates = JSON
+          // console.log(res)
+          // console.log(this.articles, typeof (this.articles))
+          console.log(this.articles)
+        })
     }
   }
 }
