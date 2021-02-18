@@ -14,13 +14,18 @@
     <div v-for="(i, index) in this.articles.news" :key="index">
       <a :href=i.share_url target="_blank">{{i.title}}</a>
     </div>
+    <div>
+      <Login/>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Login from '../pages/login/login'
 export default {
   name: 'Index',
+  components: {Login},
   data () {
     return {
       articles: ''
