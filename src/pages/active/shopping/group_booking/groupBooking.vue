@@ -63,11 +63,60 @@
       </el-form>
     </div>
     <div>
-      <el-table>
+      <el-table
+        :data="tableDates"
+      >
         <el-table-column
-          v-for="(tab, index) in view"
-          :key="index"
-          :label="tab.label"
+          label="活动编码"
+          prop="id"
+        ></el-table-column>
+        <el-table-column
+          label="活动名称"
+          prop="groupBuyActivityName"
+        ></el-table-column>
+        <el-table-column
+          label="商品图片"
+        >
+          <el-image
+            src="channelCommodityImage"
+            fit="contain"
+          ></el-image>
+        </el-table-column>
+        <el-table-column
+          label="拼团商品"
+          prop="channelCommodityName"
+        ></el-table-column>
+        <el-table-column
+          label="拼团价"
+          prop="groupBuyPrice"
+        ></el-table-column>
+        <el-table-column
+          label="发起用户"
+          prop="accomplishGroupCount"
+        ></el-table-column>
+        <el-table-column
+          label="参与用户"
+          prop="initiatorCount"
+        ></el-table-column>
+        <el-table-column
+          label="成团数"
+          prop="participantCount"
+        ></el-table-column>
+        <el-table-column
+          label="生效时间"
+          prop="groupBuyActivityTimeList"
+        ></el-table-column>
+        <el-table-column
+          label="状态"
+          prop="status[describe]"
+        ></el-table-column>
+        <el-table-column
+          label="驳回原因"
+          prop="reason"
+        ></el-table-column>
+        <el-table-column
+          label="操作"
+          prop="id"
         ></el-table-column>
       </el-table>
     </div>
@@ -136,7 +185,7 @@ export default {
           this.resultList = res.data.result.itemVOs
           // console.log(res)
           // console.log(this.articles, typeof (this.articles))
-          console.log(this.resultList)
+          this.tableDates = this.resultList
         })
     }
   }
