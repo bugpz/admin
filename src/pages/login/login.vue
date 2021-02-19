@@ -8,7 +8,7 @@
 -->
 <template>
   <div>
-    <div>
+    <div style="margin-top: 15%">
       <el-form>
         <el-row>
           <el-col
@@ -111,7 +111,8 @@ export default {
       loginUserId: '',
       imgCode: 'https://webapi.meiweigx.com/api/web/getGraphicCode?loginUserId=',
       inputGraphicCode: '',
-      imgSrc: ''
+      imgSrc: '',
+      is_login: ''
     }
   },
   created () {
@@ -140,7 +141,11 @@ export default {
           'smsCode': this.inputGraphicCode
         })
         .then(res => {
-          console.log(res.data.message)
+          const token = (res.data.result.tokenType + ' ' + res.data.result.token)
+          console.log(res.data.message, res.data)
+          this.is_login = true
+          localStorage.setItem('token', token)
+          location.replace('/')
         })
     }
   }
