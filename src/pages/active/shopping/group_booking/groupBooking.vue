@@ -83,6 +83,7 @@ export default {
       inputA: '',
       inputCode: '',
       statusInput: '',
+      resultList: '',
       statusList: [
         {value: '1', label: '全部'},
         {value: '2', label: '待审核'},
@@ -121,7 +122,7 @@ export default {
   },
   methods: {
     ajaxFun () {
-      const url = '/api/web/commodity/groupActivity/query'
+      const url = '/api/web/promote/groupBuyActivity/query'
       axios
         .post(url, {
           'searchs': '[]',
@@ -132,10 +133,10 @@ export default {
           authorization: localStorage.getItem('token')
         }})
         .then(res => {
-          this.tableDates = JSON
+          this.resultList = res.data.result.itemVOs
           // console.log(res)
           // console.log(this.articles, typeof (this.articles))
-          console.log(this.articles)
+          console.log(this.resultList)
         })
     }
   }
