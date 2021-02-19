@@ -20,6 +20,7 @@ import message from './message'
 import logistics from './logistics'
 import setting from './setting'
 import other from './other'
+import Login from '../pages/login/login'
 
 Vue.use(Router)
 
@@ -41,6 +42,10 @@ export default new Router({
           component: Index
         }
       ]
+    },
+    {
+      path: '/login',
+      component: Login
     },
     {
       path: '*',
