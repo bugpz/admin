@@ -141,11 +141,21 @@ export default {
           'smsCode': this.inputGraphicCode
         })
         .then(res => {
-          const token = (res.data.result.tokenType + ' ' + res.data.result.token)
-          console.log(res.data.message, res.data)
-          this.is_login = true
-          localStorage.setItem('token', token)
-          location.replace('/')
+          if (res.data.code === 200) {
+            const token = (res.data.result.tokenType + ' ' + res.data.result.token)
+            const userPhone = this.inputUser
+            const username = res.data.result.loginName
+            console.log(res.data.message, res.data)
+            this.is_login = true
+            localStorage.setItem('token', token)
+            localStorage.setItem('userPhone', userPhone)
+            localStorage.setItem('username', username)
+            localStorage.setItem('loginStatus', this.is_login)
+            location.replace('/')
+          } else {
+            location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
+            alert(res.data.message)
+          }
         })
     }
   }
