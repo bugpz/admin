@@ -14,18 +14,13 @@
     <div v-for="(i, index) in this.articles.news" :key="index">
       <a :href=i.share_url target="_blank">{{i.title}}</a>
     </div>
-    <div>
-      <Login/>
-    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Login from '../pages/login/login'
 export default {
   name: 'Index',
-  components: {Login},
   data () {
     return {
       articles: ''
@@ -36,15 +31,20 @@ export default {
   },
   methods: {
     ajaxFun () {
-      const url = '/api/lanzou/api.php'
-      axios
-        .get(url)
-        .then(res => {
-          this.articles = JSON.parse(res.data.substring(0, res.data.length - 4))
-          // console.log(res)
-          // console.log(this.articles, typeof (this.articles))
-          console.log('%cTime, shade fitting for; The heart, with distances', 'color:HotPink; font-size:25px')
-        })
+      const loginStatus = localStorage.getItem('loginStatus')
+      if (!loginStatus) {
+        location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
+      } else {
+        const url = '/api/lanzou/api.php'
+        axios
+          .get(url)
+          .then(res => {
+            this.articles = JSON.parse(res.data.substring(0, res.data.length - 4))
+            // console.log(res)
+            // console.log(this.articles, typeof (this.articles))
+            console.log('%cTime, shade fitting for; The heart, with distances', 'color:HotPink; font-size:25px')
+          })
+      }
     }
   }
 }
