@@ -123,8 +123,14 @@ export default {
     ajaxFun () {
       const url = '/api/web/commodity/groupActivity/query'
       axios
-        .post(url, {'searchs': '[]', 'pageNo': 1, 'pageSize': 20, 'orderby': 'createTime', 'sort': 'desc'}, {headers: {
-          authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxOCIsInN1YiI6IjEzNTU4NjIyNzc5IiwiaWF0IjoxNjEzNDc4MjEwLCJyb2xlcyI6WyI3NzYxOTcxNjQyMDMyNDU1NjgiXSwiYXV0aG9yaXRpZXMiOjE5NTc5MTg5Nzd9.2NMga8-_Gfia0SnnS2j4n88F3n6yuSdwywiSXvW1d5I'}})
+        .post(url, {
+          'searchs': '[]',
+          'pageNo': 1,
+          'pageSize': 20,
+          'orderby': 'createTime',
+          'sort': 'desc'}, {headers: {
+          authorization: localStorage.getItem('token')
+        }})
         .then(res => {
           this.tableDates = JSON
           // console.log(res)
