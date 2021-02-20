@@ -48,6 +48,22 @@
         <span v-if="$route.path !== '/index' && lay === 2">/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
         <span v-else-if="$route.path !== '/index' && lay === 3 && $route.meta.layer !==2">/{{$route.matched[lay-2].meta.title}}/{{$route.matched[lay-1].meta.title}}/{{$route.meta.title}}</span>
         <span v-else-if="$route.meta.layer === 2">/{{$route.matched[lay-2].meta.title}}/{{$route.meta.title}}</span>
+        <el-dropdown
+          style="float: right"
+          split-button
+        >
+          {{username}}
+          <el-dropdown-menu
+            slot="dropdown"
+          >
+            <el-dropdown-item>
+              <a href="/">首页</a>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <span disabled="block" @click="logout">退出</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
       <HTabs/>
     </div>
@@ -99,7 +115,8 @@ export default {
         logistics,
         setting,
         other
-      }
+      },
+      username: localStorage.getItem('username')
     }
   },
   computed: {
@@ -116,6 +133,10 @@ export default {
       } else {
         this.type = 1
       } this.$emit('type-change', this.type)
+    },
+    logout () {
+      localStorage.clear()
+      location.reload()
     }
   }
 }
