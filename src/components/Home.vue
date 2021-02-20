@@ -135,8 +135,8 @@ export default {
       } this.$emit('type-change', this.type)
     },
     logout () {
+      location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
       localStorage.clear()
-      location.reload()
     }
   }
 }
