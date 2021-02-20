@@ -163,9 +163,21 @@ export default {
             localStorage.setItem('username', username)
             localStorage.setItem('loginStatus', this.is_login)
             location.replace('/')
-          } else {
-            location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
+          } else if (res.data.message === '图形验证码不正确') {
             alert(res.data.message)
+            axios
+              .get(this.imgCode + this.loginUserId)
+              .then(res => {
+                location.reload()
+              })
+          } else {
+            // location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
+            alert(res.data.message)
+            axios
+              .get(this.imgCode + this.loginUserId)
+              .then(res => {
+                this.imgSrc = (this.imgSrc + this.loginUserId)
+              })
           }
         })
     },
