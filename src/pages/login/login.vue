@@ -8,6 +8,11 @@
 -->
 <template>
   <div>
+    <div style="margin-left: 30%">
+      <h1 style="margin-top: 10%; color: hotpink">
+        Time, shade fitting for; The heart, with distances
+      </h1>
+    </div>
     <div style="margin-top: 15%">
       <el-form>
         <el-row>
@@ -57,6 +62,7 @@
             :span="2"
           >
             <el-image
+              class="login_btn_width"
               :src="imgSrc"
             ></el-image>
           </el-col>
@@ -77,18 +83,22 @@
           >
             <el-button
               type="primary"
+              class="login_btn_width"
+              @click="handleSmsCode"
             >
-              立即获取验证码
+              {{ buttonMeg }}
             </el-button>
           </el-col>
         </el-row>
-        <el-row>
+        <el-row style="margin-top: 1.5%">
           <el-col
             :span="5"
             :offset="10"
           >
             <el-button
               @click="handleClick"
+              class="login_btn_width"
+              type="primary"
             >
               登录
             </el-button>
@@ -112,7 +122,8 @@ export default {
       imgCode: 'https://webapi.meiweigx.com/api/web/getGraphicCode?loginUserId=',
       inputGraphicCode: '',
       imgSrc: '',
-      is_login: ''
+      is_login: '',
+      buttonMeg: '立即获取验证码'
     }
   },
   created () {
@@ -155,6 +166,18 @@ export default {
           } else {
             location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
             alert(res.data.message)
+          }
+        })
+    },
+    handleSmsCode () { // 获取短信验证码
+      const url = '/api/web/sendSmCode/' + this.inputUser + '/' + this.loginUserId
+      axios
+        .get(url)
+        .then(res => {
+          if (res.data.code === 200) {
+            this.buttonMeg = res.data.message
+          } else {
+            this.buttonMeg = res.data.message
           }
         })
     }
