@@ -77,10 +77,9 @@
         <el-table-column
           label="商品图片"
         >
-          <el-image
-            src="channelCommodityImage"
-            fit="contain"
-          ></el-image>
+          <template slot-scope="scope">
+            <img :src="scope.row.channelCommodityImage" width="100%" height="100%" alt=""/>
+          </template>
         </el-table-column>
         <el-table-column
           label="拼团商品"
@@ -120,6 +119,17 @@
         ></el-table-column>
       </el-table>
     </div>
+    <div style="float: right">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[10, 20, 30, 50]"
+        :page-size="20"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="page.totalCount">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -146,8 +156,8 @@ export default {
       ],
       eButton: [
         {title: '清空', class: 'right_btn', type: 'danger', nType: 'reset'},
-        {title: '查询', class: 'right_btn', type: 'primary', nType: ''},
-        {title: '新建', class: 'right_btn', type: 'success', nType: ''}
+        {title: '查询', class: 'right_btn', type: 'primary', nType: 'submit'},
+        {title: '新建', class: 'right_btn', type: 'success', nType: 'button'}
       ],
       view: [
         {label: '活动编码'},
@@ -163,7 +173,11 @@ export default {
         {label: '驳货原因'},
         {label: '操作'}
       ],
-      tableDates: []
+      tableDates: [],
+      page: [],
+      pageNO: 1,
+      pageSize: 20,
+      currentPage: 1
     }
   },
   created () {
@@ -175,8 +189,8 @@ export default {
       axios
         .post(url, {
           'searchs': '[]',
-          'pageNo': 1,
-          'pageSize': 20,
+          'pageNo': this.pageNO,
+          'pageSize': this.pageSize,
           'orderby': 'createTime',
           'sort': 'desc'}, {headers: {
           authorization: localStorage.getItem('token')
@@ -186,7 +200,39 @@ export default {
           // console.log(res)
           // console.log(this.articles, typeof (this.articles))
           this.tableDates = this.resultList
+          this.page = res.data.result
+          this.pageNO = res.data.pageNo
+          this.pageSize = res.data.pageSize
         })
+    },
+    handleChange () {
+      const url = '/api/web/promote/groupBuyActivity/query'
+      axios
+        .post(url, {
+          'searchs': '[]',
+          'pageNo': this.pageNO,
+          'pageSize': this.pageSize,
+          'orderby': 'createTime',
+          'sort': 'desc'}, {headers: {
+          authorization: localStorage.getItem('token')
+        }})
+        .then(res => {
+          this.resultList = res.data.result.itemVOs
+          // console.log(res)
+          // console.log(this.articles, typeof (this.articles))
+          this.tableDates = this.resultList
+          this.page = res.data.result
+        })
+    },
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+      this.pageSize = val
+      this.handleChange()
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+      this.pageNO = val
+      this.handleChange()
     }
   }
 }
