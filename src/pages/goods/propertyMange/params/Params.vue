@@ -70,11 +70,41 @@
       </el-form>
     </div>
     <div>
-      <el-table>
+      <el-table
+        :data="tableLists"
+      >
         <el-table-column
-          v-for="(tab, index) in tabList"
-          :key="index"
-          :label="tab.label"
+          label="参数编码"
+          prop="id"
+        ></el-table-column>
+        <el-table-column
+          label="参数名称"
+          prop="name"
+        ></el-table-column>
+        <el-table-column
+          label="输入类型"
+          prop="paramType.describe"
+        >
+        </el-table-column>
+        <el-table-column
+          label="状态"
+        >
+          <template
+            slot-scope="scope"
+            >
+            {{scope.row.enable ? '启用' : '停用'}}
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="添加时间"
+          prop="createTime"
+        ></el-table-column>
+        <el-table-column
+          label="添加人"
+          prop="operator"
+        ></el-table-column>
+        <el-table-column
+          label="操作"
         ></el-table-column>
       </el-table>
     </div>
@@ -82,6 +112,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Params',
   data () {
@@ -107,15 +138,33 @@ export default {
         {title: '查询', class: 'right_btn', type: 'primary', nType: ''},
         {title: '清空', class: 'right_btn', type: 'danger', nType: 'reset'}
       ],
-      tabList: [
-        {label: '参数编码'},
-        {label: '参数名称'},
-        {label: '输入类型'},
-        {label: '状态'},
-        {label: '添加时间'},
-        {label: '添加人'},
-        {label: '操作'}
-      ]
+      tableLists: []
+    }
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      const url = '/api/web/commodity/baseParamOption/query'
+      axios
+        .post(url, {
+          'pageNo': 1,
+          'pageSize': 20,
+          'orderby': 'createTime',
+          'sort': 'desc',
+          'searchs': '[]'
+        }, {
+          headers: {
+            authorization: localStorage.getItem('token')
+          }
+        })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.tableLists = res.data.result.itemVOs
+            console.log(this.tableLists)
+          }
+        })
     }
   }
 }
