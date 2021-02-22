@@ -8,8 +8,10 @@ import md5 from 'js-md5'
 import 'element-ui/lib/theme-chalk/index.css'
 import '../src/assets/icon/iconfont'
 import './assets/css/base.css'
+import {LoginStatusVerification} from './utils/selectLoginStatus'
 
 Vue.use(ElementUI)
+Vue.prototype.LoginStatusVerification = LoginStatusVerification
 Vue.prototype.$md5 = md5
 Vue.config.productionTip = false
 
