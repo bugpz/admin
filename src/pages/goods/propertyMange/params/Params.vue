@@ -113,6 +113,7 @@
 
 <script>
 import axios from 'axios'
+import {LoginStatusVerification} from '../../../../utils/selectLoginStatus'
 export default {
   name: 'Params',
   data () {
@@ -163,6 +164,8 @@ export default {
           if (res.data.code === 200) {
             this.tableLists = res.data.result.itemVOs
             console.log(this.tableLists)
+          } else if (res.data.code === 401) {
+            LoginStatusVerification()
           }
         })
     }
