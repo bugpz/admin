@@ -8,9 +8,11 @@ import md5 from 'js-md5'
 import 'element-ui/lib/theme-chalk/index.css'
 import '../src/assets/icon/iconfont'
 import './assets/css/base.css'
+import axios from 'axios'
 import {LoginStatusVerification} from './utils/selectLoginStatus'
 
 Vue.use(ElementUI)
+Vue.prototype.$axios = axios
 Vue.prototype.LoginStatusVerification = LoginStatusVerification
 Vue.prototype.$md5 = md5
 Vue.config.productionTip = false
