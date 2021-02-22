@@ -221,7 +221,11 @@ export default {
           }
         })
         .then(res => {
-          this.tableLists = res.data.result.itemVOs
+          if (res.data.code === 200) {
+            this.tableLists = res.data.result.itemVOs
+          } else if (res.data.code === 401) {
+            LoginStatusVerification()
+          }
         })
     }
   }
