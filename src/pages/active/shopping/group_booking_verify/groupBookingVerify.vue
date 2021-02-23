@@ -67,11 +67,51 @@
       </el-form>
     </div>
     <div>
-      <el-table>
+      <el-table
+        :data="tableLists"
+      >
         <el-table-column
-          v-for="(tab, index) in dataList"
-          :key="index"
-          :label="tab.label"
+          label="审核编号"
+          prop="auditCode"
+        ></el-table-column>
+        <el-table-column
+          label="活动编码"
+          prop="orderActivityCode"
+        ></el-table-column>
+        <el-table-column
+          label="优惠名称"
+          prop="groupBuyActivityName"
+        ></el-table-column>
+        <el-table-column
+          label="拼团商品"
+          prop="channelCommodityName"
+        ></el-table-column>
+        <el-table-column
+          label="拼团价"
+          prop="groupBuyPrice"
+        ></el-table-column>
+        <el-table-column
+          label="查看详情"
+        ></el-table-column>
+        <el-table-column
+          label="发起人"
+          prop="sponsor"
+        ></el-table-column>
+        <el-table-column
+          label="发起时间"
+          prop="createTime"
+        ></el-table-column>
+        <el-table-column
+          label="审核人"
+          prop="auditor"
+        ></el-table-column>
+        <el-table-column
+          label="审核状态"
+          prop="auditStatus.describe"
+        ></el-table-column>
+        <el-table-column
+          label="处理时间"
+          prop="auditTime"
         ></el-table-column>
       </el-table>
     </div>
@@ -79,6 +119,8 @@
 </template>
 
 <script>
+import {LoginStatusVerification} from '../../../../utils/selectLoginStatus'
+
 export default {
   name: 'group_booking_verify',
   data () {
@@ -97,20 +139,34 @@ export default {
         {title: '查询', class: 'right_btn', type: 'primary', nType: ''},
         {title: '批量处理', class: 'right_btn', type: 'primary', nType: ''}
       ],
-      dataList: [
-        {label: '审核编号'},
-        {label: '活动编码'},
-        {label: '优惠名称'},
-        {label: '拼团商品'},
-        {label: '拼团价'},
-        {label: '查看详情'},
-        {label: '发起人'},
-        {label: '发起时间'},
-        {label: '审核人'},
-        {label: '审核状态'},
-        {label: '处理时间'},
-        {label: '操作'}
-      ]
+      tableLists: []
+    }
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      const url = '/api/web/promote/groupBuyActivity/queryAudit'
+      this.$axios
+        .post(url, {
+          'searchs': '[]',
+          'pageNo': 1,
+          'pageSize': 20,
+          'orderby': 'createTime',
+          'sort': 'desc'
+        }, {
+          headers: {
+            authorization: localStorage.getItem('token')
+          }
+        })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.tableLists = res.data.result.itemVOs
+          } else if (res.data.code === 401) {
+            LoginStatusVerification()
+          }
+        })
     }
   }
 }
