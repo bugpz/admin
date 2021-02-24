@@ -102,9 +102,31 @@
     <div>
       <el-table>
         <el-table-column
-          v-for="(data, index) in dataList"
-          :key="index"
-          :label="data.label"
+          label="投放ID"
+        ></el-table-column>
+        <el-table-column
+          label="投放终端"
+        ></el-table-column>
+        <el-table-column
+          label="投放业务"
+        ></el-table-column>
+        <el-table-column
+          label="投放商品数(SPU)"
+        ></el-table-column>
+        <el-table-column
+          label="状态"
+        ></el-table-column>
+        <el-table-column
+          label="原因说明"
+        ></el-table-column>
+        <el-table-column
+          label="发起时间"
+        ></el-table-column>
+        <el-table-column
+          label="发起人"
+        ></el-table-column>
+        <el-table-column
+          label="操作"
         ></el-table-column>
       </el-table>
     </div>
@@ -142,17 +164,7 @@ export default {
         {title: '查询', class: 'right_btn', type: 'primary', nType: ''},
         {title: '新增', class: 'right_btn', type: 'primary', nType: ''}
       ],
-      dataList: [
-        {label: '投放ID'},
-        {label: '投放终端'},
-        {label: '投放业务'},
-        {label: '投放商品数（SPU）'},
-        {label: '状态'},
-        {label: '原因说明'},
-        {label: '发起时间'},
-        {label: '发起人'},
-        {label: '操作'}
-      ]
+      dataList: []
     }
   }
 }
