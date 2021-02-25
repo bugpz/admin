@@ -97,29 +97,42 @@
                 :span="3"
                 class="right_btn"
               >
-                <el-button class="right_btn" type="primary">查询</el-button>
+                <el-button class="right_btn" type="primary" @click="handleSelect">查询</el-button>
               </el-col>
             </el-row>
           </el-form>
-          <el-table>
+          <el-table
+            :data="userList"
+          >
             <el-table-column
               label="姓名"
+              prop="fullName"
             ></el-table-column>
             <el-table-column
               label="登录手机"
+              prop="phone"
             ></el-table-column>
             <el-table-column
               label="主属部门"
+              prop="mainDept.name"
             ></el-table-column>
             <el-table-column
               label="附属部门"
+              prop="slaveDept.name"
             ></el-table-column>
             <el-table-column
               label="角色"
+              prop="roleStr"
             ></el-table-column>
             <el-table-column
               label="状态"
-            ></el-table-column>
+            >
+              <template slot-scope="scope">
+                <span>
+                  {{scope.row.enable ? '正常' : '停用'}}
+                </span>
+              </template>
+            </el-table-column>
             <el-table-column
               label="操作"
             ></el-table-column>
@@ -141,9 +154,9 @@ export default {
       username: '',
       inputStatus: '',
       userStatus: [
-        {value: 'all', label: '全部'},
-        {value: 'started', label: '启用'},
-        {value: 'stop', label: '停用'}
+        {value: '', label: '全部'},
+        {value: 'true', label: '启用'},
+        {value: 'false', label: '停用'}
       ],
       inputUserRole: '',
       userRoles: [
@@ -153,18 +166,35 @@ export default {
       treesPort: {
         children: 'childDeptList',
         label: 'name'
-      }
+      },
+      userList: []
     }
   },
   created () {
     this.ajaxFun()
   },
   methods: {
-    handleNodeClick (data) {
-      console.log(data)
+    handleNodeClick (id) {
+      console.log(id.id)
+      this.$axios
+        .post('/api/web/account/user/loadPage', {
+          'pageNo': 1,
+          'pageSize': 20,
+          'searchs': '[{"tempMatchType":"4","propertyName":"mainDepartment.id","propertyValue1":' + id.id + ',"tempType":"Long"}]'}, {headers: {
+          authorization: localStorage.getItem('token')
+        }})
+        .then(res => {
+          if (res.data.code === 200) {
+            this.userList = res.data.result.itemVOs
+            console.log(this.userList)
+            localStorage.setItem('mainDepartment.id', id.id)
+          } else {
+            LoginStatusVerification()
+          }
+        })
     },
     ajaxFun () {
-      this.$axios
+      this.$axios // 获取组织结构
         .post('/api/web/account/department/search', {}, {headers: {
           authorization: localStorage.getItem('token')
         }})
@@ -184,6 +214,26 @@ export default {
             this.userRoles = res.data.result.itemVOs
           } else {
             LoginStatusVerification()
+          }
+        })
+    },
+    handleSelect () {
+      this.$axios
+        .post('/api/web/account/department/search', {
+          'pageNo': 1,
+          'pageSize': 20,
+          'searchs': '[{"tempMatchType":"5","propertyName":"phone","propertyValue1":' + '"' + this.userPhone + '"' + ',"tempType":"String"},' +
+            '{"tempMatchType":"4","propertyName":"mainDepartment.id","propertyValue1":' + localStorage.getItem('mainDepartment.id') + ',"tempType":"Long"}],' +
+            '{"tempMatchType":"5","propertyName":"fullName","propertyValue1":' + '"' + this.username + '"' + ',"tempType":"String"},' +
+            '{"tempMatchType":"4","propertyName":"enable","propertyValue1":' + this.inputStatus + ',"tempType":"boolean"},' +
+            '{"tempMatchType":"4","propertyName":"roleList.id","propertyValue1":' + this.inputUserRole + ',"tempType":"Number"}'
+        }, {headers: {
+          authorization: localStorage.getItem('token')
+        }})
+        .then(res => {
+          if (res.data.code === 200) {
+            this.userList = res.data.result.itemVOs
+            console.log(this.userList)
           }
         })
     }
