@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import {LoginStatusVerification} from '../utils/selectLoginStatus'
 export default {
   name: 'Index',
   data () {
@@ -31,20 +32,30 @@ export default {
   },
   methods: {
     ajaxFun () {
-      const loginStatus = localStorage.getItem('loginStatus')
-      if (!loginStatus) {
-        location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
-      } else {
-        const url = '/api/lanzou/api.php'
-        axios
-          .get(url)
-          .then(res => {
-            this.articles = JSON.parse(res.data.substring(0, res.data.length - 4))
-            // console.log(res)
-            // console.log(this.articles, typeof (this.articles))
-            console.log('%cTime, shade fitting for; The heart, with distances', 'color:HotPink; font-size:25px')
-          })
-      }
+      this.$axios
+        .get('/api/web/getCurrentPermissions', {headers: {
+          authorization: localStorage.getItem('token')
+        }})
+        .then(res => {
+          if (res.data.code === 200) {
+            const loginStatus = localStorage.getItem('length')
+            if (loginStatus === '4') {
+              location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`)
+            } else {
+              const url = '/api/lanzou/api.php'
+              axios
+                .get(url)
+                .then(res => {
+                  this.articles = JSON.parse(res.data.substring(0, res.data.length - 4))
+                  // console.log(res)
+                  // console.log(this.articles, typeof (this.articles))
+                  console.log('%cTime, shade fitting for; The heart, with distances', 'color:HotPink; font-size:25px')
+                })
+            }
+          } else {
+            LoginStatusVerification()
+          }
+        })
     }
   }
 }
