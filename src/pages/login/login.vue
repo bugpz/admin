@@ -76,6 +76,7 @@
               maxlength="4"
               placeholder="请输入验证码"
               v-model="inputGraphicCode"
+              @keyup.enter.native="handleClick"
             ></el-input>
           </el-col>
           <el-col
