@@ -219,14 +219,14 @@ export default {
     },
     handleSelect () {
       this.$axios
-        .post('/api/web/account/department/search', {
+        .post('/api/web/account/user/loadPage', {
           'pageNo': 1,
           'pageSize': 20,
           'searchs': '[{"tempMatchType":"5","propertyName":"phone","propertyValue1":' + '"' + this.userPhone + '"' + ',"tempType":"String"},' +
-            '{"tempMatchType":"4","propertyName":"mainDepartment.id","propertyValue1":' + localStorage.getItem('mainDepartment.id') + ',"tempType":"Long"}],' +
+            '{"tempMatchType":"4","propertyName":"mainDepartment.id","propertyValue1":' + localStorage.getItem('mainDepartment.id') + ',"tempType":"Long"},' +
             '{"tempMatchType":"5","propertyName":"fullName","propertyValue1":' + '"' + this.username + '"' + ',"tempType":"String"},' +
             '{"tempMatchType":"4","propertyName":"enable","propertyValue1":' + this.inputStatus + ',"tempType":"boolean"},' +
-            '{"tempMatchType":"4","propertyName":"roleList.id","propertyValue1":' + this.inputUserRole + ',"tempType":"Number"}'
+            '{"tempMatchType":"4","propertyName":"roleList.id","propertyValue1":' + this.inputUserRole + ',"tempType":"Number"}]'
         }, {headers: {
           authorization: localStorage.getItem('token')
         }})
