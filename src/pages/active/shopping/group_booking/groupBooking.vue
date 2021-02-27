@@ -135,6 +135,7 @@
 
 <script>
 import axios from 'axios'
+import {LoginStatusVerification} from '../../../../utils/selectLoginStatus'
 export default {
   name: 'group_booking',
   data () {
@@ -196,13 +197,17 @@ export default {
           authorization: localStorage.getItem('token')
         }})
         .then(res => {
-          this.resultList = res.data.result.itemVOs
-          // console.log(res)
-          // console.log(this.articles, typeof (this.articles))
-          this.tableDates = this.resultList
-          this.page = res.data.result
-          this.pageNO = res.data.pageNo
-          this.pageSize = res.data.pageSize
+          if (res.data.code === 200) {
+            this.resultList = res.data.result.itemVOs
+            // console.log(res)
+            // console.log(this.articles, typeof (this.articles))
+            this.tableDates = this.resultList
+            this.page = res.data.result
+            this.pageNO = res.data.pageNo
+            this.pageSize = res.data.pageSize
+          } else {
+            LoginStatusVerification()
+          }
         })
     },
     handleChange () {
@@ -217,11 +222,15 @@ export default {
           authorization: localStorage.getItem('token')
         }})
         .then(res => {
-          this.resultList = res.data.result.itemVOs
-          // console.log(res)
-          // console.log(this.articles, typeof (this.articles))
-          this.tableDates = this.resultList
-          this.page = res.data.result
+          if (res.data.code === 200) {
+            this.resultList = res.data.result.itemVOs
+            // console.log(res)
+            // console.log(this.articles, typeof (this.articles))
+            this.tableDates = this.resultList
+            this.page = res.data.result
+          } else {
+            LoginStatusVerification()
+          }
         })
     },
     handleSizeChange (val) {
