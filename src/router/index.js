@@ -21,12 +21,17 @@ import logistics from './logistics'
 import setting from './setting'
 import other from './other'
 import Login from '../pages/login/login'
+import show from '../pages/active/shopping/group_booking_verify/show'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/active/shopping/group_booking_form_show', // 拼团活动审核详情页
+      component: show
+    },
     {
       path: '/',
       name: 'index',
