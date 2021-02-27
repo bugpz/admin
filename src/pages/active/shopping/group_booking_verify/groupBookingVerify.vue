@@ -92,7 +92,16 @@
         ></el-table-column>
         <el-table-column
           label="查看详情"
-        ></el-table-column>
+        >
+          <template
+            slot-scope="scope"
+          >
+            <el-button
+              type="text"
+              @click="gotoDetail(scope.row)"
+            >点击查看</el-button>
+          </template>
+        </el-table-column>
         <el-table-column
           label="发起人"
           prop="sponsor"
@@ -167,6 +176,14 @@ export default {
             LoginStatusVerification()
           }
         })
+    },
+    gotoDetail (row) {
+      let query = {
+        type: 'show',
+        version: row.version,
+        groupBuyActivityCode: row.orderActivityCode
+      }
+      this.$router.push({ path: '/active/shopping/group_booking_form_show', query: query })
     }
   }
 }
