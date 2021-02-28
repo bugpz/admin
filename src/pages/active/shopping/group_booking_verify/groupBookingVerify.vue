@@ -183,7 +183,9 @@ export default {
         version: row.version,
         groupBuyActivityCode: row.orderActivityCode
       }
-      this.$router.push({ path: '/active/shopping/group_booking_form_show', query: query })
+      // this.$router.push({ path: '/active/shopping/group_booking_form_show', query: query }) // 直接打开
+      let newTag = this.$router.resolve({path: '/active/shopping/group_booking_form_show', query: query})
+      window.open(newTag.href, '_blank')
     }
   }
 }
