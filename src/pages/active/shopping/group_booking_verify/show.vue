@@ -26,7 +26,7 @@
             <el-input
               v-model="input"
               disabled
-              :placeholder="tableLists.groupBuyActivityName"
+              :placeholder="tableLists.result.groupBuyActivityName"
             ></el-input>
           </el-form-item>
         </el-row>
@@ -42,9 +42,9 @@
               disabled
               v-model="input"
               type="datatimerange"
-              :start-placeholder="tableLists.groupBuyActivityTimeList[0]"
+              :start-placeholder="tableLists.result.groupBuyActivityTimeList[0]"
               range-separator="至"
-              :end-placeholder="tableLists.groupBuyActivityTimeList[1]"
+              :end-placeholder="tableLists.result.groupBuyActivityTimeList[1]"
             >
             </el-date-picker>
           </el-form-item>
@@ -63,7 +63,7 @@
               <el-input
                 disabled
                 v-model="input"
-                :placeholder="tableLists.joinHours"
+                :placeholder="tableLists.result.joinHours"
               ></el-input>
               小时
             </span>
@@ -94,17 +94,17 @@
           >
             <el-image
               class="show_image"
-              :src="tableLists.channelCommodityImage"
+              :src="tableLists.result.channelCommodityImage"
             ></el-image>
           </el-col>
           <el-col
             :span="20"
           >
             <span>
-              {{tableLists.channelCommodityName}}
+              {{tableLists.result.channelCommodityName}}
             </span><br><br>
             <span>
-              {{tableLists.channelCommodityStatus.describe}}
+              {{tableLists.result.channelCommodityStatus.describe}}
             </span>
           </el-col>
         </el-row>
@@ -119,11 +119,27 @@
             >
               <el-table-column
                 label="商品规格"
+                prop="skuInfo"
               >
               </el-table-column>
               <el-table-column
                 label="销售价"
-                prop="1[1]"
+                prop="id"
+              ></el-table-column>
+              <el-table-column
+                label="库存数"
+                prop="stock"
+              ></el-table-column>
+              <el-table-column
+                label="是否地推"
+              >
+                <template
+                  slot-scope="scope"
+                >{{scope.row.offLine ? '是' : '否'}}</template>
+              </el-table-column>
+              <el-table-column
+                label="拼团价"
+                prop="groupBuyPrice"
               ></el-table-column>
             </el-table>
           </el-col>
@@ -157,10 +173,11 @@ export default {
         }})
         .then(res => {
           if (res.data.code === 200) {
-            this.tableLists = res.data.result
-            this.tabs =
+            this.tableLists = res.data
+            for (let i in res.data) {
+              this.tabs.push(res.data[i])
+            }
             console.log(this.tabs)
-            console.log(typeof this.tabs)
           } else {
             LoginStatusVerification()
             window.close()
