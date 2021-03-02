@@ -124,7 +124,7 @@
               </el-table-column>
               <el-table-column
                 label="销售价"
-                prop="id"
+                prop="commoditySkuList[0].salePrice"
               ></el-table-column>
               <el-table-column
                 label="库存数"
@@ -193,6 +193,26 @@
           <el-form-item
             label="发起身份"
           >
+            <el-radio-group
+              v-model="tableLists.result.participantType"
+            >
+              <el-radio
+                disabled
+                label="ALL"
+              >全部</el-radio>
+              <el-radio
+                disabled
+                label="NEW_USER"
+              >新用户</el-radio>
+              <el-radio
+                disabled
+                label="OLD_USER"
+              >老用户</el-radio>
+              <el-radio
+                disabled
+                label="FIRST_PARTICIPATION"
+              >首次参与用户</el-radio>
+            </el-radio-group>
           </el-form-item>
         </el-row>
         <el-row
@@ -200,7 +220,28 @@
         >
           <el-form-item
             label="参团身份"
-          ></el-form-item>
+          >
+            <el-radio-group
+              v-model="tableLists.result.initiatorType"
+            >
+              <el-radio
+                disabled
+              label="ALL"
+              >全部</el-radio>
+              <el-radio
+                disabled
+                label="NEW_USER"
+              >新用户</el-radio>
+              <el-radio
+                disabled
+                label="OLD_USER"
+              >老用户</el-radio>
+              <el-radio
+                disabled
+                label="FIRST_PARTICIPATION"
+              >首次参与用户</el-radio>
+            </el-radio-group>
+          </el-form-item>
         </el-row>
       </el-form>
     </div>
