@@ -128,7 +128,7 @@
               ></el-table-column>
               <el-table-column
                 label="库存数"
-                prop="stock"
+                prop="commoditySkuList[0].stock"
               ></el-table-column>
               <el-table-column
                 label="是否地推"
@@ -139,10 +139,68 @@
               </el-table-column>
               <el-table-column
                 label="拼团价"
-                prop="groupBuyPrice"
+                prop="commoditySkuList[0].groupBuyPrice"
               ></el-table-column>
             </el-table>
           </el-col>
+        </el-row>
+        <el-row
+          class="leftSpace"
+        >
+          <el-form-item
+            label="拼团限量"
+          >
+            <el-input
+              disabled
+              :placeholder="tableLists.result.commodityTotalNum"
+            ></el-input>
+          </el-form-item>
+        </el-row>
+        <el-row
+          class="leftSpace"
+        >
+          <el-form-item
+            label="成团人数"
+          >
+            <span
+              class="nobr"
+            >
+              <el-input
+                disabled
+                v-model="input"
+                :placeholder="tableLists.result.participatorLeastNum"
+              ></el-input>
+              起
+              <span
+                style="color: #7F7F7F"
+              >
+                成团人数至少两人
+              </span>
+            </span>
+          </el-form-item>
+        </el-row>
+        <div>参与限制</div>
+      </el-form>
+    </div>
+    <div>
+      <el-divider></el-divider>
+      <el-form
+        inline="inline"
+      >
+        <el-row
+        class="leftSpace"
+        >
+          <el-form-item
+            label="发起身份"
+          >
+          </el-form-item>
+        </el-row>
+        <el-row
+          class="leftSpace"
+        >
+          <el-form-item
+            label="参团身份"
+          ></el-form-item>
         </el-row>
       </el-form>
     </div>
@@ -174,10 +232,11 @@ export default {
         .then(res => {
           if (res.data.code === 200) {
             this.tableLists = res.data
-            for (let i in res.data) {
-              this.tabs.push(res.data[i])
-            }
+            // for (let i in res.data) {
+            //   this.tabs.push(res.data[i])
+            // }
             console.log(this.tabs)
+            this.tabs.push(res.data.result)
           } else {
             LoginStatusVerification()
             window.close()
