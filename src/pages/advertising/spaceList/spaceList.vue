@@ -68,33 +68,77 @@
         </el-row>
         <el-row>
           <el-col
-            v-for="(button, index) in buttons"
-            :key="index"
             :span="1.1"
             class="leftSpace right_btn"
             >
             <el-button
-              :class="button.class"
-              :native-type="button.nativeType"
-              :type="button.type"
-              >{{button.title}}</el-button>
+              class="right_btn"
+              type="primary"
+            >
+              添加广告位
+            </el-button>
+            <el-button
+              class="right_btn"
+              type="danger"
+              native-type="reset"
+            >
+              重置
+            </el-button>
+            <el-button
+              class="right_btn"
+              type="primary"
+            >
+              查询
+            </el-button>
           </el-col>
         </el-row>
       </el-form>
     </div>
     <div>
-      <el-table class="leftSpace">
+      <el-table
+        :data="tableLists"
+      >
         <el-table-column
-          v-for="(tab, index) in dataLists"
-          :key="index"
-          :label="tab.label"
+          label="广告位编码"
+          prop="positionCode"
           ></el-table-column>
+        <el-table-column
+          label="广告位名称"
+          prop="positionName"
+        ></el-table-column>
+        <el-table-column
+          label="所属终端"
+          prop="positionTerminalDesc"
+        ></el-table-column>
+        <el-table-column
+          label="广告位类型"
+          prop="positionTypeDesc"
+        ></el-table-column>
+        <el-table-column
+          label="添加时间"
+          prop="createTime"
+        ></el-table-column>
+        <el-table-column
+          label="广告位状态"
+          prop="statusDesc"
+        ></el-table-column>
+        <el-table-column
+          label="操作"
+        >
+          <el-button
+            type="primary"
+          >
+            查看
+          </el-button>
+        </el-table-column>
       </el-table>
     </div>
   </div>
 </template>
 
 <script>
+import {LoginStatusVerification} from '../../../utils/selectLoginStatus'
+
 export default {
   name: 'spaceList',
   data () {
@@ -122,20 +166,31 @@ export default {
         {value: '1', label: '已启用'},
         {value: '2', label: '已禁用'}
       ],
-      dataLists: [
-        {label: '广告位编码'},
-        {label: '广告位名称'},
-        {label: '所属终端'},
-        {label: '广告位类型'},
-        {label: '添加时间'},
-        {label: '广告位状态'},
-        {label: '操作'}
-      ],
-      buttons: [
-        {title: '添加广告位', class: 'right_btn', type: 'primary', nativeType: ''},
-        {title: '重置', class: 'right_btn', type: 'danger', nativeType: 'reset'},
-        {title: '查询', class: 'right_btn', type: 'primary', nativeType: ''}
-      ]
+      tableLists: []
+    }
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      const url = '/api/web/cms/advertWeb/queryAdvertPositionPage'
+      this.$axios
+        .post(url, {
+          'searchs': '[]',
+          'pageNo': 1,
+          'pageSize': 20,
+          'orderby': 'createTime',
+          'sort': 'desc'
+        }, {headers: {
+          authorization: localStorage.getItem('token')}})
+        .then(res => {
+          if (res.data.code === 200) {
+            this.tableLists = res.data.result.itemVOs
+          } else {
+            LoginStatusVerification()
+          }
+        })
     }
   }
 }
