@@ -81,6 +81,7 @@
               class="right_btn"
               type="danger"
               native-type="reset"
+              @click="handleReset"
             >
               重置
             </el-button>
@@ -191,6 +192,11 @@ export default {
             LoginStatusVerification()
           }
         })
+    },
+    handleReset () {
+      this.inputType = ''
+      this.inputTerminal = ''
+      this.inputStatus = ''
     }
   }
 }
